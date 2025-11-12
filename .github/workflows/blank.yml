@@ -58,5 +58,6 @@ jobs:
         uses: actions/upload-artifact@v5.0.0
         with:
           name: output
-          path: ./helloworld
+          path: duo-examples/hello-world/
+          compression-level: 0
           
