@@ -36,7 +36,7 @@ jobs:
         run: |
           cd duo-examples
           printf "2\n1\n" | source envsetup.sh
-          cd duo-examples/hello-world/
+          cd hello-world/
           make
           ls -al
           
