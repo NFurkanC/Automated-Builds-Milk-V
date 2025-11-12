@@ -24,7 +24,7 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v4
-
+      
       # Runs a single command using the runners shell
       - name: Install tools that are required for toolchain
         run: sudo apt-get install wget git make
@@ -50,3 +50,5 @@ jobs:
         run: |
           echo lmao \n
           echo already successful
+
+        shell: bash
