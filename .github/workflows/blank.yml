@@ -35,8 +35,11 @@ jobs:
       - name: Prepare compilation environment and compile test
         run: |
           cd duo-examples
+          ls -al
           printf "2\n1\n" | source envsetup.sh
+          ls -al
           cd hello-world/
+          ls -al
           make
           ls -al
           
