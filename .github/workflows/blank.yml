@@ -38,7 +38,10 @@ jobs:
           printf "2\n1\n" | source envsetup.sh 
           
       - name: Go To Compile Test Directory
-        run: cd hello-world
+        run: |
+          ls -al
+          cd hello-world
+          
       - name: Compile Test
         run: make
           
