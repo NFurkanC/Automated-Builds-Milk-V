@@ -32,13 +32,10 @@ jobs:
       - name: Clone toolchain repository
         run: git clone https://github.com/milkv-duo/duo-examples.git
 
-      - name: Prepare compilation environment
+      - name: Prepare compilation environment and compile test
         run: |
           cd duo-examples
-          printf "2\n1\n" | source envsetup.sh 
-          
-      - name: Compile Test
-        run: | 
+          printf "2\n1\n" | source envsetup.sh
           cd duo-examples/hello-world/
           make
           ls -al
