@@ -37,13 +37,21 @@ jobs:
       - name: Prepare compilation environment and compile test
         run: |
           cd duo-examples
-          ls -al
-          printf "2\n1\n" | . ./envsetup.sh
-          ls -al
+          echo "--- envsetup.sh çalıştırılıyor (Here Document ile) ---"
+          . ./envsetup.sh << EOF
+          2
+          1
+          EOF
+          echo "--- envsetup.sh sonrası değişken kontrolü ---"
+          echo "CHIP: $CHIP"
+          echo "ARCH: $milkv_arch"
+          echo "TOOLCHAIN_PREFIX: $TOOLCHAIN_PREFIX"
+          echo "CC: $CC"
+          echo "CFLAGS: $CFLAGS"
+          echo "----------------------------------------"
+          
           cd hello-world/
-          ls -al
           make
-          ls -al
 
         shell: bash
 
