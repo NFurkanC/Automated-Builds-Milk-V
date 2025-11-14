@@ -34,7 +34,7 @@ jobs:
       - name: Clone toolchain repository
         run: git clone https://github.com/milkv-duo/duo-examples.git
 
-      - name: Prepare compilation environment
+      - name: Prepare compilation environment and compile the files in repository
         run: |
           cd duo-examples
           echo "--- envsetup.sh çalıştırılıyor (Here Document ile) ---"
@@ -49,10 +49,7 @@ jobs:
           echo "CC: $CC"
           echo "CFLAGS: $CFLAGS"
           echo "----------------------------------------"
-
-      - name: Compile the files in repository
-        run: |
-          cd src/
+          cd ${GITHUB_WORKSPACE}/src/
           make
           
       - name: Cache
