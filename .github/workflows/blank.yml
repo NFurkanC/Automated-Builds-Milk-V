@@ -34,7 +34,7 @@ jobs:
       - name: Clone toolchain repository
         run: git clone https://github.com/milkv-duo/duo-examples.git
 
-      - name: Prepare compilation environment and compile test
+      - name: Prepare compilation environment
         run: |
           cd duo-examples
           echo "--- envsetup.sh çalıştırılıyor (Here Document ile) ---"
@@ -49,10 +49,18 @@ jobs:
           echo "CC: $CC"
           echo "CFLAGS: $CFLAGS"
           echo "----------------------------------------"
-          
-          cd hello-world/
+
+      - name: Compile the files in repository
+        run: |
+          cd src/
           make
-          ls -al
+          
+      - name: Cache
+        uses: actions/cache@v4.3.0
+        with:
+          path: duo-examples/
+          key: duo-s-cache
+          save-always: true
           
       - name: Upload the executable.
         uses: actions/upload-artifact@v5.0.0
