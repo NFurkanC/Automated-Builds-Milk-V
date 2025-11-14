@@ -33,7 +33,8 @@ $(TARGET): $(OBJS)
 
 $(BUILD_DIR)/%.o: %.c
 	@mkdir -p $(BUILD_DIR)
-	$(CC) $(CFLAGS) -o $@ -c $<
+	$(CC) $(CFLAGS) -o $(BUILD_DIR)/$@ -c $<
+	@rm -rf $(BUILD_DIR)/*.o
 
 .PHONY: clean
 clean:
