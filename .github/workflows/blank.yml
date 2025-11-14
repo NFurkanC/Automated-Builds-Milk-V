@@ -34,9 +34,13 @@ jobs:
           key: duo-s-cache
           save-always: true
 
-      - name: Clone toolchain repository if not cached
-        if: steps.cache.outputs.cache-hit != 'true'
-        run: git clone https://github.com/milkv-duo/duo-examples.git
+      - name: Clone toolchain repository if not cached nor found
+        run: |
+          # Sadece 'duo-examples' dizini yoksa klonla
+          [ ! -d "duo-examples" ] && git clone https://github.com/milkv-duo/duo-examples.git
+          
+          # Dizin zaten varsa, log'a bir mesaj yazdır (iyi bir pratiktir)
+          [ -d "duo-examples" ] && echo "duo-examples dizini zaten mevcut, klonlama atlandı."
 
       - name: Prepare compilation environment and compile the files in repository
         run: |
