@@ -1,7 +1,8 @@
 TARGET_NAME=blink
 TARGET_SUFFIX=.duo
 TARGET=$(TARGET_NAME)$(TARGET_SUFFIX)
-BUILD_DIR= ../build
+BUILD_DIR=build
+SRC_DIR=src
 
 # Check Errors
 ifeq (,$(TOOLCHAIN_PREFIX))
@@ -23,15 +24,15 @@ CC = $(TOOLCHAIN_PREFIX)gcc
 LDFLAGS += -lwiringx
 
 # Source and Object Files
-SOURCE = $(wildcard *.c)
-OBJS = $(patsubst %.c,$(BUILD_DIR)/%.o,$(SOURCE))
+SOURCE = $(wildcard $(SRC_DIR)/*.c)
+OBJS = $(patsubst $(SRC_DIR)/%.c,$(BUILD_DIR)/%.o,$(SOURCE))
 
 # Build Target
 $(TARGET): $(OBJS)
 	@mkdir -p $(BUILD_DIR)
 	$(CC) $(CFLAGS) -o $@ $(OBJS) $(LDFLAGS)
 
-$(BUILD_DIR)/%.o: %.c
+$(BUILD_DIR)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(BUILD_DIR)
 	$(CC) $(CFLAGS) -o $(BUILD_DIR)/$@ -c $<
 	@rm -rf $(BUILD_DIR)/*.o
